@@ -1,0 +1,38 @@
+---
+title: "FibonacciBases"
+author: "Kyoko Sano"
+output: html_document
+---
+
+First, read in the fibonaccibases.csv file generated using the Python program.
+```{r}
+df.fib <- read.csv("fibonaccibases.csv")
+```
+
+This data is obviously representing the exponential graph.
+```{r}
+plot(df.fib$base, df.fib$total.possible.pairs, main = "Number of Permutations of a Pair of Integers in the One's Place of a Base",xlab="Base", ylab='Possible Pairs')
+```
+
+
+This one is quite messy on screen. Perhaps, plotting the bases’ data points by multiples may provide more information.
+I will come back to this later.
+```{r}
+plot(df.fib$base, df.fib$sequence.length, main = "Sequence Lengths", xlab="Base", ylab="Seq Length")
+```
+
+
+This density plot shows the majority of the Fibonacci sequence lengths are under 1000. In fact, the median is 708.
+```{r}
+plot(density(df.fib$sequence.length), main = "Density Distribution of Sequence Lengths", xlab = "Length of Sequence", ylab = "Density")
+```
+
+Let’s work with the top portion of the dataset.
+```{r}
+plot(df.fib$base[1:60], df.fib$sequence.length[1:60], main = "Sequence Lengths (shorter)", xlab="Base", ylab="Seq Length")
+```
+
+
+It looks like the reverse version of the height of a ball as it bounces closer and closer to the ground with more time. Here, the sequence lengths show a gradual increase as well as an increase in the fluctuation between the sequence lengths of consecutive bases.
+
+My next steps would be to find relations between the bases of similar sequence lengths and build a model to represent this data.
